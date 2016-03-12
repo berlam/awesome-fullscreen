@@ -31,8 +31,10 @@ for _, w in pairs(fullscreenwindows) do
 	end
 end
 if (somewindowinfullscreen) then
+	os.execute("xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true")
 	os.execute("xset s off && xset -dpms && xset s noblank")
 else
+	os.execute("xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false")
 	os.execute("xset s on && xset +dpms && xset s blank")
 end
 end)
