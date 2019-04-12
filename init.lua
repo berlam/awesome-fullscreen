@@ -31,13 +31,13 @@ for _, w in pairs(_M.fullscreenwindows) do
 	end
 end
 if (somewindowinfullscreen) then
-	os.execute("xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true")
-	os.execute("xautolock -disable")
-	os.execute("xset s off && xset -dpms && xset s noblank")
+	os.execute("test -x /usr/bin/xfconf-query && xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true --create -t bool")
+	os.execute("test -x /usr/bin/xautolock && xautolock -disable")
+	--os.execute("xset -dpms && xset s off")
 else
-	os.execute("xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false")
-	os.execute("xautolock -enable")
-	os.execute("xset s on && xset +dpms && xset s blank")
+	os.execute("test -x /usr/bin/xfconf-query && xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false --create -t bool")
+	os.execute("test -x /usr/bin/xautolock && xautolock -enable")
+	--os.execute("xset +dpms && xset s on")
 end
 end)
 -- }}}
